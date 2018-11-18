@@ -1,5 +1,6 @@
 import telegram
 import yahoo_news_jp
+from google_search import search
 
 my_token = '711334098:AAHhNP3Hondc76pJcbOlNXPtJ2f0HlYYVBk'
 chatbot = telegram.Bot(token=my_token)
@@ -10,3 +11,9 @@ print(text1)
 print(text2)
 
 chatbot.sendMessage(chat_id=chat_id, text=text2)
+
+
+keyword = input()
+result = search(keyword)
+
+chatbot.sendMessage(chat_id=chat_id, text=result)
