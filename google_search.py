@@ -1,7 +1,7 @@
 from lib.google_search_results import GoogleSearchResults
 #library from https://github.com/serpapi/google-search-results-python
 
-def search(keyword)
+def search(keyword):
     query = keyword
 
     params = {
@@ -15,4 +15,4 @@ def search(keyword)
 
     engine_query = GoogleSearchResults(params)
     dictionary_results = engine_query.get_dictionary()
-    print(dictionary_results)
+    return dictionary_results
