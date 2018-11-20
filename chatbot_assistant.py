@@ -1,4 +1,5 @@
 import telegram
+from telegram.ext import Updater, MessageHandler, Filters
 import yahoo_news_jp
 from google_search import search
 
@@ -12,8 +13,19 @@ print(text2)
 
 chatbot.sendMessage(chat_id=chat_id, text=text2)
 
+print('start')
 
-keyword = input()
-result = search(keyword)
+def get_message(bot, update) :
+    update.message.reply_text("got text")
+    word = update.message.text
+    text = search(word)
+    update.message.reply_text(text)
 
-chatbot.sendMessage(chat_id=chat_id, text=result)
+updater = Updater(my_token)
+
+message_handler = MessageHandler(Filters.text, get_message)
+updater.dispatcher.add_handler(message_handler)
+
+updater.start_polling(timeout=3, clean=True)
+updater.idle()
+
